@@ -16,12 +16,24 @@
 			$(function() {
     			$('a[rel*=leanModal]').leanModal({ top : 200, closeButton: ".modal_close" });		
 			});
-	</script>
-    <script src="js-webshim/minified/polyfiller.js"></script> 
+	</script> 
     <script> 
-        webshim.activeLang('en');
-        webshims.polyfill('forms');
-        webshims.cfg.no$Switch = true;
+$("form").submit(function(e) {
+
+    var ref = $(this).find("[required]");
+
+    $(ref).each(function(){
+        if ( $(this).val() == '' )
+        {
+            alert("Required field should not be blank.");
+
+            $(this).focus();
+
+            e.preventDefault();
+            return false;
+        }
+    });  return true;
+});
     </script>
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
